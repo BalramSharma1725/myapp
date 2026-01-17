@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-green
+  labels:
+    app: myapp-green
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp-green
+  template:
+    metadata:
+      labels:
+        app: myapp-green
+    spec:
+      containers:
+      - name: myapp
+        image: python:3.10-slim
+        command: ["python","-m","http.server","8080"]
+        ports:
+        - containerPort: 8080
